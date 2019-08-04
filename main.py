@@ -1,6 +1,7 @@
 from cmd import Cmd
 import sys
 import os
+import importlib
 
 
 CONFIG_DIR = os.path.expanduser(os.path.join('~', '.thermostat'))
@@ -21,6 +22,15 @@ class ThermostatShell(Cmd):
         super(ThermostatShell, self).__init__()
         self._address = address
         self._strategy = self._get_strategy(self._address)
+
+        try:
+            plugin = importlib.import_module(self._strategy)
+            self._thermostat = plugin.Thermostat(self._address)
+        except ModuleNotFoundError:
+            exit('No plugin available for {!r:}.'.format(self._strategy))
+        except AttributeError:
+            exit('Plugin for {!r:} is broken.'.format(self._strategy))
+
         self.prompt = '({:s}@{:s}) '.format(self._strategy, self._address)
 
     @staticmethod
