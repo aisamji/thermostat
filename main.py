@@ -54,6 +54,10 @@ class ThermostatShell(Cmd):
                 file.write('{:s} {:s}\n'.format(address, brand))
             return brand
 
+    def do_exit(self, arg):
+        '''Exit the shell.'''
+        return True
+
 
 if __name__ == '__main__':
     try:
