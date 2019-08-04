@@ -1,0 +1,14 @@
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v2.2.3
+  hooks:
+    - id: check-added-large-files
+    - id: check-ast
+    - id: check-case-conflict
+    - id: check-docstring-first
+    - id: check-executables-have-shebangs
+    - id: check-merge-conflict
+    - id: double-quote-string-fixer
+    - id: end-of-file-fixer
+    - id: flake8
+    - id: requirements-txt-fixer
+    - id: trailing-whitespace
