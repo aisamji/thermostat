@@ -11,6 +11,7 @@ ENDPOINT_HEALTH = '/sys'
 KEY_CURRENT_TEMPERATURE = 'temp'
 KEY_OPERATING_STATE = 'tstate'
 KEY_PROGRAM_OVERRIDE = 'override'
+KEY_FAN_STATE = 'fstate'
 
 
 class Thermostat(_abstract.Thermostat):
@@ -41,6 +42,9 @@ class Thermostat(_abstract.Thermostat):
     def _get_program_state(self):
         return ProgramState(self._data[KEY_PROGRAM_OVERRIDE])
 
+    def _get_fan_state(self):
+        return FanState(self._data[KEY_FAN_STATE])
+
 
 class HvacMode(IntEnum):
     OFF = 0
@@ -52,3 +56,8 @@ class HvacMode(IntEnum):
 class ProgramState(IntEnum):
     FOLLOWING = 0
     OVERRIDING = 1
+
+
+class FanState(IntEnum):
+    OFF = 0
+    ON = 1

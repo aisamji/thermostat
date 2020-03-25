@@ -42,3 +42,7 @@ class Thermostat(ABC):
     @property
     def fan_state(self):
         return self._get_fan_state()
+
+    @abstractmethod
+    def _get_fan_state(self):
+        pass

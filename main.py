@@ -28,6 +28,7 @@ def get_status(namespace):
     print(_generate_display_line('Current Temperature', thermostat.current_temperature, format='{:.1f}˚F'))
     print(_generate_display_line('Operating State', thermostat.operating_state, format='{.name:}'))
     print(_generate_display_line('Program State', thermostat.program_state, format='{.name}'))
+    print(_generate_display_line('Fan State', thermostat.fan_state, format='{.name}'))
 
 
 if __name__ == '__main__':
