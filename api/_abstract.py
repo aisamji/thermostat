@@ -30,3 +30,15 @@ class Thermostat(ABC):
     @abstractmethod
     def _get_operating_state(self):
         pass
+
+    @property
+    def program_state(self):
+        return self._get_program_state()
+
+    @abstractmethod
+    def _get_program_state(self):
+        pass
+
+    @property
+    def fan_state(self):
+        return self._get_fan_state()

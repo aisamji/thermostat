@@ -16,7 +16,7 @@ def configure_profile(namespace):
 
 
 def _generate_display_line(label, value, *, format='{!s:}'):
-    line_format = '{:s}: ' + format
+    line_format = '{:>19s}: ' + format
     return line_format.format(label, value)
 
 
@@ -26,7 +26,8 @@ def get_status(namespace):
     thermostat.load()
 
     print(_generate_display_line('Current Temperature', thermostat.current_temperature, format='{:.1f}˚F'))
-    print(_generate_display_line('Operating State', thermostat.operating_state))
+    print(_generate_display_line('Operating State', thermostat.operating_state, format='{.name:}'))
+    print(_generate_display_line('Program State', thermostat.program_state, format='{.name}'))
 
 
 if __name__ == '__main__':
