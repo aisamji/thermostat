@@ -2,7 +2,7 @@ import importlib
 from . import exceptions
 
 
-def create_plugin(name, address):
+def create_thermostat(name, address):
     try:
         if name == '_abstract':
             raise ModuleNotFoundError()
@@ -13,6 +13,6 @@ def create_plugin(name, address):
     except ModuleNotFoundError:
         raise exceptions.MissingPluginError(name) from None
     except AttributeError:
-        raise exceptions.MisconfiguredPluginError(name) from None  # Keep the full stack trace for this one.
+        raise exceptions.MisconfiguredPluginError(name)  # Keep the full stack trace for this one.
     except TypeError:
-        raise exceptions.MissingPluginError(name)  # Keep the full stack trace for this one.
+        raise exceptions.ThermostatPluginError(name)  # Keep the full stack trace for this one.

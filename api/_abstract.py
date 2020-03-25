@@ -15,14 +15,10 @@ class Thermostat(ABC):
     def is_alive(self):
         pass
 
-    @abstractmethod
-    def get_status(self):
-        pass
+    @property
+    def current_temperature(self):
+        return self._get_current_temperature()
 
     @abstractmethod
-    def set_cool_target(self, target):
-        pass
-
-    @abstractmethod
-    def set_heat_target(self, target):
+    def _get_current_temperature(self):
         pass
