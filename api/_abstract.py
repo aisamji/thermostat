@@ -22,3 +22,11 @@ class Thermostat(ABC):
     @abstractmethod
     def _get_current_temperature(self):
         pass
+
+    @property
+    def operating_state(self):
+        return self._get_operating_state()
+
+    @abstractmethod
+    def _get_operating_state(self):
+        pass

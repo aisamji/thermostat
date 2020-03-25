@@ -23,9 +23,10 @@ def _generate_display_line(label, value, *, format='{!s:}'):
 def get_status(namespace):
     plugin, address = config.default.get_profile(namespace.profile)
     thermostat = create_thermostat(plugin, address)
+    thermostat.load()
 
     print(_generate_display_line('Current Temperature', thermostat.current_temperature, format='{:.1f}˚F'))
-    print()
+    print(_generate_display_line('Operating State', thermostat.operating_state))
 
 
 if __name__ == '__main__':
