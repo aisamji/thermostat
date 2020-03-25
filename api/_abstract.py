@@ -14,3 +14,15 @@ class Thermostat(ABC):
     @abstractmethod
     def is_alive(self):
         pass
+
+    @abstractmethod
+    def get_status(self):
+        pass
+
+    @abstractmethod
+    def set_cool_target(self, target):
+        pass
+
+    @abstractmethod
+    def set_heat_target(self, target):
+        pass
