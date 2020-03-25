@@ -14,18 +14,20 @@ class Configuration:
         self._data = configparser.ConfigParser()
         self._data.read(self.config_file)
 
-    def get_profile(self, name='default'):
+    def get_profile(self, name):
         try:
             name = str(name)
             plugin = self._data.get(name, self.PLUGIN_TYPE_KEY)
             address = self._data.get(name, self.ADDRESS_KEY)
+            if plugin == '':
+                plugin = None
+            if address == '':
+                address = None
             return plugin, address
-        except configparser.NoSectionError:
-            raise ValueError('No profile named {!r:} found.'.format(name)) from None
-        except configparser.NoOptionError:
-            raise ValueError('The file {!r:} is corrupted.'.format(self.config_file)) from None
+        except (configparser.NoSectionError, configparser.NoOptionError):
+            return None, None
 
-    def set_profile(self, name='default', *, plugin, address):
+    def set_profile(self, name, *, plugin, address):
         try:
             name = str(name)
             self._data.set(name, self.PLUGIN_TYPE_KEY, plugin)
